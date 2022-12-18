@@ -24,13 +24,6 @@ RUN set -x \
     && mv /kubernetes/client/bin/kubectl /usr/bin/kubectl \
     && rm -rf /kubernetes
 
-RUN set -x \
-  && wget https://github.com/segmentio/kubectl-curl/releases/download/v${KURL_VERSION}/kubectl-curl_v${KURL_VERSION}_${TARGETOS}_${TARGETARCH}.tar.gz \
-  && mkdir -p curl-install/ \
-  && tar -zxf kubectl-curl_v${KURL_VERSION}_${TARGETOS}_${TARGETARCH}.tar.gz -C curl-install/ \
-  && mv curl-install/kubectl-curl_v${KURL_VERSION}_${TARGETOS}_${TARGETARCH} /usr/bin/kubectl-curl \
-  && rm -rf kubectl-curl_v${KURL_VERSION}_${TARGETOS}_${TARGETARCH}.tar.gz curl-install/
-
 ADD update-trivydb.sh /scripts/update-trivydb.sh
 ADD extract.sh /scripts/extract.sh
 ADD upload-report.sh /scripts/upload-report.sh
