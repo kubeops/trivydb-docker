@@ -1,14 +1,19 @@
 #!/bin/sh
 
-set -x
+# set -x
+set -eou pipefail
 
-ENV SCANNER_NAMESPACE=kubeops
-ENV SCANNER_POD_ADDR=scanner-0:8443
+FILESERVER_ADDR=${FILESERVER_ADDR:-https://scanner}
 
 mkdir -p trivy/db
 cd trivy/db
 
-kubectl curl -k https://${SCANNER_POD_ADDR}/files/trivy/db.tar.gz -n ${SCANNER_NAMESPACE} >db.tar.gz
+export TOKEN=$(cat /var/run/secrets/kubernetes.io/serviceaccount/token)
+curl -fSsLO \
+    -H "Authorization: Bearer ${TOKEN}" \
+    --cacert /var/serving-cert/ca.crt \
+    ${FILESERVER_ADDR}/files/trivy/db.tar.gz
+
 tar xvf db.tar.gz
 rm db.tar.gz
 
