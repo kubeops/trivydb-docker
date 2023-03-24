@@ -6,7 +6,7 @@ ARG TARGETOS
 ARG TARGETARCH
 
 ARG ORAS_VERSION=0.16.0
-ARG KUBECTL_VERSION=1.22.15
+ARG KUBECTL_VERSION=1.24.7
 
 RUN set -x \
 	&& apk add --update --no-cache ca-certificates curl
