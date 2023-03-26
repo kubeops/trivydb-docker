@@ -5,7 +5,7 @@ LABEL org.opencontainers.image.source https://github.com/kubeops/trivydb-docker
 ARG TARGETOS
 ARG TARGETARCH
 
-ARG ORAS_VERSION=0.16.0
+ARG ORAS_VERSION=1.0.0
 ARG KUBECTL_VERSION=1.24.7
 
 RUN set -x \
@@ -25,4 +25,3 @@ RUN set -x \
 
 ADD update-trivydb.sh /scripts/update-trivydb.sh
 ADD extract.sh /scripts/extract.sh
-ADD upload-report.sh /scripts/upload-report.sh
