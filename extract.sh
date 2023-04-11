@@ -24,5 +24,3 @@ curl -fSsLO -k \
 tar xvf javadb.tar.gz
 rm javadb.tar.gz
 
-/root/.cache/tv version
-/bin/oras version
