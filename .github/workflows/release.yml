@@ -19,11 +19,6 @@ jobs:
     steps:
       - uses: actions/checkout@v1
 
-      - name: Print version info
-        id: semver
-        run: |
-          make version
-
       - name: Set up QEMU
         id: qemu
         uses: docker/setup-qemu-action@v3
@@ -35,6 +30,9 @@ jobs:
 
       - name: Run checks
         run: |
+          cd root
+          make ci
+          cd ../ubi
           make ci
 
       - name: Publish to GitHub Container Registry
@@ -44,4 +42,7 @@ jobs:
           USERNAME: 1gtm
         run: |
           docker login ghcr.io --username ${USERNAME} --password ${DOCKER_TOKEN}
+          cd root
+          make release
+          cd ../ubi
           make release
