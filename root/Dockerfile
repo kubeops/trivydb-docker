@@ -6,7 +6,7 @@ ARG TARGETOS
 ARG TARGETARCH
 
 ARG ORAS_VERSION=1.0.0
-ARG KUBECTL_VERSION=1.24.7
+ARG KUBECTL_VERSION=1.31.14
 
 RUN set -x \
 	&& apk add --update --no-cache ca-certificates curl
@@ -23,5 +23,5 @@ RUN set -x \
     && mv /kubernetes/client/bin/kubectl /usr/bin/kubectl \
     && rm -rf /kubernetes
 
-ADD update-trivydb.sh /scripts/update-trivydb.sh
-ADD extract.sh /scripts/extract.sh
+ADD scripts/update-trivydb.sh /scripts/update-trivydb.sh
+ADD scripts/extract.sh /scripts/extract.sh
