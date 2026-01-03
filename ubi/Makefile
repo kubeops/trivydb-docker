@@ -35,3 +35,9 @@ verify: fmt
 
 .PHONY: ci
 ci: verify
+
+.PHONY: docker-certify-redhat
+docker-certify-redhat:
+	@preflight check container $(IMAGE):$(TAG) \
+		--submit \
+		--certification-component-id=6957d24a8da5b1298784205e
